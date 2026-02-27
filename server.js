@@ -3,6 +3,11 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
+import newsletterRoutes from "./routes/newsletter.routes.js";
+
+
+
+
 dotenv.config();
 connectDB();
 
@@ -12,7 +17,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/users", userRoutes);
-
+app.use("/api/newsletter", newsletterRoutes);
 // Test Route
 app.get("/", (req, res) => {
   res.json({ message: "Backend is running 🚀 happly" });

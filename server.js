@@ -15,7 +15,7 @@ app.use("/api/users", userRoutes);
 
 // Test Route
 app.get("/", (req, res) => {
-  res.json({ message: "Backend is running 🚀" });
+  res.json({ message: "Backend is running 🚀 happly" });
 });
 
 const PORT = process.env.PORT || 5000;

@@ -10,16 +10,28 @@ connectDB();
 
 const app = express();
 
-// ✅ CORS FIRST
+
+
+
+
 const allowedOrigins = [
   "http://localhost:5173",
   "https://ciphervest.vercel.app"
 ];
 
 app.use(cors({
-  origin: true,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
+
+
+
 
 
 // ✅ Body parser

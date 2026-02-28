@@ -14,13 +14,16 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: [
-    "https://ciphervest.vercel.app",
-    "http://localhost:5173"
-  ],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://ciphervest.vercel.app",
+    ],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use("/api/users", userRoutes);
 app.use("/api/newsletter", newsletterRoutes);

@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
-import userRoutes from "./routes/userRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
 import newsletterRoutes from "./routes/newsletter.routes.js";
 
 dotenv.config();
@@ -38,7 +38,7 @@ app.use(cors({
 app.use(express.json());
 
 // ✅ Routes
-app.use("/api/users", userRoutes);
+app.use("/api", contactRoutes);
 app.use("/api/newsletter", newsletterRoutes);
 
 // Test Route

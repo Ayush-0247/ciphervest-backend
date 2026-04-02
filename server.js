@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import newsletterRoutes from "./routes/newsletter.routes.js";
+import helmet from "helmet";
 
 dotenv.config();
 connectDB();
@@ -17,7 +18,6 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://ciphervest.vercel.app",
-  "https://www.ciphervestcapital.in/",
   "https://www.ciphervestcapital.in",
 ];
 
@@ -33,7 +33,7 @@ app.use(cors({
 }));
 
 
-
+app.use(helmet());
 
 
 // ✅ Body parser

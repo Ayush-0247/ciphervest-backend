@@ -18,6 +18,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://ciphervest.vercel.app",
   "https://www.ciphervestcapital.in/",
+  "https://www.ciphervestcapital.in",
 ];
 
 app.use(cors({

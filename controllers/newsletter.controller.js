@@ -4,8 +4,9 @@ export const subscribeNewsletter = async (req, res) => {
   try {
     const email = req.body?.email;
 
-    if (!email) {
-      return res.status(400).json({ message: "Email is required" });
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      return res.status(400).json({ message: "A valid email is required" });
     }
 
     // Check if already exists

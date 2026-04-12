@@ -5,9 +5,6 @@ import connectDB from "./config/db.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import newsletterRoutes from "./routes/newsletter.routes.js";
 import helmet from "helmet";
-import rateLimit from "express-rate-limit";
-import mongoSanitize from "express-mongo-sanitize";
-import hpp from "hpp";
 
 dotenv.config();
 connectDB();
@@ -38,24 +35,9 @@ app.use(cors({
 
 app.use(helmet());
 
+
 // ✅ Body parser
 app.use(express.json());
-
-// ✅ Security Middlewares (after body parser for req.body sanitization)
-
-// Limit requests from same API
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  limit: 100, // Limit each IP to 100 requests per windowMs
-  message: "Too many requests from this IP, please try again later"
-});
-app.use("/api", limiter);
-
-// Data sanitization against NoSQL query injection
-app.use(mongoSanitize());
-
-// Prevent parameter pollution
-app.use(hpp());
 
 // ✅ Routes
 app.use("/api", contactRoutes);

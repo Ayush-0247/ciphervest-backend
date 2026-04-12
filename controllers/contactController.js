@@ -12,16 +12,11 @@ export const submitContact = async (req, res) => {
       message,
     } = req.body;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-    if (!name || typeof name !== 'string' || name.trim() === '') {
-      return res.status(400).json({ success: false, message: "Valid name is required" });
-    }
-    if (!email || !emailRegex.test(email)) {
-      return res.status(400).json({ success: false, message: "A valid email is required" });
-    }
-    if (!message || typeof message !== 'string' || message.trim() === '') {
-      return res.status(400).json({ success: false, message: "Valid message is required" });
+    if (!name || !email || !message) {
+      return res.status(400).json({
+        success: false,
+        message: "Name, email and message are required",
+      });
     }
 
     const contact = await Contact.create({

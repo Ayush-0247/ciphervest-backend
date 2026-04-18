@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import newsletterRoutes from "./routes/newsletter.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
 import helmet from "helmet";
 
 dotenv.config();
@@ -17,6 +18,8 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
+  "http://localhost:5500",
+  "http://127.0.0.1:5500",
   "https://ciphervest.vercel.app",
   "https://www.ciphervestcapital.in",
 ];
@@ -42,6 +45,7 @@ app.use(express.json());
 // ✅ Routes
 app.use("/api", contactRoutes);
 app.use("/api/newsletter", newsletterRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Test Route
 app.get("/", (req, res) => {

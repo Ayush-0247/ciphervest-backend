@@ -22,10 +22,12 @@ const allowedOrigins = [
   "http://127.0.0.1:5500",
   "https://ciphervest.vercel.app",
   "https://www.ciphervestcapital.in",
+  "https://ciphervestcapital.in",
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
+    // Allow requests with no origin (local files, curl, Postman, admin dashboard)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {

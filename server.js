@@ -27,8 +27,8 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (local files, curl, Postman, admin dashboard)
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow requests with no origin OR "null" origin (file:// local admin dashboard)
+    if (!origin || origin === "null" || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));

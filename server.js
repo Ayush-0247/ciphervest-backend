@@ -14,7 +14,7 @@ const app = express();
 
 
 
-https://ciphervest-frontend.vercel.app/
+
 
 const allowedOrigins = [
   "http://localhost:5173",

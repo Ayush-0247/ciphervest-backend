@@ -6,15 +6,11 @@ import contactRoutes from "./routes/contactRoutes.js";
 import newsletterRoutes from "./routes/newsletter.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import helmet from "helmet";
-
+import crypto from "./routes/crypto.routes.js";
 dotenv.config();
 connectDB();
 
 const app = express();
-
-
-
-
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -26,21 +22,21 @@ const allowedOrigins = [
   "https://ciphervestcapital.in",
 ];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin OR "null" origin (file:// local admin dashboard)
-    if (!origin || origin === "null" || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
-
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin OR "null" origin (file:// local admin dashboard)
+      if (!origin || origin === "null" || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  }),
+);
 
 app.use(helmet());
-
 
 // ✅ Body parser
 app.use(express.json());
@@ -54,6 +50,9 @@ app.use("/api/admin", adminRoutes);
 app.get("/", (req, res) => {
   res.json({ message: "Backend is running 🚀 happly" });
 });
+
+app.use("/crypto" , crypto)
+
 
 const PORT = process.env.PORT || 5000;
 
